@@ -40,7 +40,7 @@ const handleSubmit =async(e)=>{
 toast.success("User registered successfully");
 
 setTimeout(()=>{
-  navigate("/gallery");
+  navigate("/login");
 }, 1500);  
   console.log(res.data);
     localStorage.setItem("token", res.data.token);
@@ -60,19 +60,18 @@ const polaroids=[
           ];
           return (
             <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-        <div className='flex-col flex md:flex-row w-full h-screen'>
+        <div className='flex-col flex md:flex-row w-full min-h-screen'>
                 <div className='w-full h-[400px] md:w-1/2  md:h-screen bg-cover bg-center relative'
                 style={{backgroundImage:`url(${bg})`}}>
         
                     <div className='absolute inset-0 bg-black/50 h-full'>
                         <div className='relative z-10 flex flex-col 
                         items-start  pl-6 md:pl-10
-                        justify-start md:pl-10 gap-3.5 
+                        justify-start]md:pl-10 gap-3.5 
                          md:justify-center pt-6 md:pt-0  w-full h-full '>
-       <div className='flex flex-col mt-10  items-start  gap-2 md:gap-3.5'>
+     <div className='flex flex-col mt-10  items-start  gap-2 md:gap-3.5'>
         {polaroids.map(({src,rotate,label})=>(
-            <div key={label}
-            className={`${rotate} bg-white p-1.5 md:p-2 pb-5 md:pb-7 rounded-sm
+            <div key={label} className={`${rotate} bg-white p-1.5 md:p-2 pb-5 md:pb-7 rounded-sm
              shadow-2xl w-20 md:w-36 transition-transform 
              duration-300 hover:scale-105 hover:z-10 
              cursor-pointer relative`}>
@@ -81,19 +80,17 @@ const polaroids=[
         </div>
         ))}
         </div>
-    <div className='ml-10 absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-8'>
-        <h2 className='text-white text-4xl font-bold text-center leading-tight tracking-tight'>
+<div className='absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-8'>
+        <h2 className='ml-5 text-white text-4xl font-bold text-center leading-tight tracking-tight'>
             Start.<br/><span className='text-[#b9a39c]'>Create.</span><br/>
             Inspire.
           </h2>
-        
-          <p className='text-white/60 text-sm text-center mt-4 max-w-[220px] leading-relaxed'>
+         <p className='ml-8 text-white/60 text-sm text-center mt-4 max-w-[220px] leading-relaxed'>
   Join a space where your moments turn into stories worth sharing.
           </p>
-        </div></div>
+        </div></div></div>
         </div>
-        </div>
-        <div className='w-full md:w-1/2 flex items-center justify-center overflow-y-auto px-4'>
+        <div className='w-full md:w-1/2 flex items-center justify-center py-10 px-4'>
             <div className='bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-left'>
                   <div className='flex flex-col items-center gap-3 '>
           <div className='bg-[#6F4E37] p-3 rounded-xl shadow-md'>
@@ -113,20 +110,17 @@ Join Framely and start sharing your photos
                 <label className='text-sm font-medium text-gray-700'>
                     Full name
                 </label>
-                <input type='text'
-                name='name'
-                 value={form.name}
+                <input type='text'  name='name' value={form.name}
               onChange={handleChange}
                 placeholder='Enter your Name'
                 className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>                <label className='text-sm font-medium text-gray-700'>
                     Email
                 </label>
-                <input type='email'
-                name='email'
-                 value={form.email}
-                 onChange={handleChange}
-                placeholder='Enter your Email'
-                className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>                <div className='relative'>
+        <input type='email' name='email' value={form.email}
+            onChange={handleChange}
+            placeholder='Enter your Email'
+           className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>              
+                  <div className='relative'>
                 <label className='text-sm font-medium text-gray-700'>
                     Password
                     </label>
@@ -135,14 +129,13 @@ Join Framely and start sharing your photos
          value={form.password}
          onChange={handleChange}
                       placeholder="••••••••"
-    className="w-full mt-2 bg-gray-100 mb-4 px-4 py-3 pr-10 rounded-lg border border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
-/>                  <span onClick={()=>setShowPassword(!showPassword)}
-    className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500"
->                        {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+          className="w-full mt-2 bg-gray-100 mb-4 px-4 py-3 pr-10 rounded-lg border border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
+    />        <span onClick={()=>setShowPassword(!showPassword)}
+      className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500">                        {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
 
                 </span>
                 </div>
-                                <div className='relative'>
+     <div className='relative'>
   <label className="text-sm font-medium text-gray-700">
                     Confirm Password
                     </label>
@@ -153,7 +146,7 @@ Join Framely and start sharing your photos
                       placeholder="••••••••"
     className="w-full mt-2 bg-gray-100 mb-4 px-4 py-3 pr-10 rounded-lg border border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
 />                
-                <span onClick={()=>setShowConfirmPassword(!showConfirmPassword)}
+<span onClick={()=>setShowConfirmPassword(!showConfirmPassword)}
     className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500"
 >                        {showConfirmPassword ? <IoEyeOffOutline/>:<IoEyeOutline/>}
 
@@ -173,9 +166,7 @@ Join Framely and start sharing your photos
                     Sign in
                 </span>
                 </Link> 
-                 {error && (
-  <p className="text-red-500 text-sm mt-2 text-center">{error}</p>
-)}           </p>
+           </p>
         </div>
         </form>
                </div>

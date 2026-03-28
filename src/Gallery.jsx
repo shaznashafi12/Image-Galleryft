@@ -53,13 +53,15 @@ return(
     <h1 className='text-4xl mt-18 font-bold font-serif text-[#6F4E37] mb-1'>Gallery</h1>
      <p className='text-gray-500 mb-4'>
           {images.length} photos shared by the community</p>
- <div className='flex items-center gap-4 mb-6 flex-wrap'>
+<div className='flex flex-col sm:flex-row sm:items-center gap-3 mb-6'>
+   <div className='flex flex-wrap gap-2'>
     {['All','Nature','Urban','Travel'].map(cat=>(
         <button key={cat} onClick={()=>setFilter(cat)} className={`px-4 py-1 rounded-full text-sm
            ${filter===cat?'bg-[#6F4E37] text-white':'bg-gray-50 text-gray-700'}`}>{cat}</button>
         ))}
- <div className='ml-auto flex items-center gap-3'>
-    <div className='flex border border-2 border-gray-200 bg-gray-50 rounded-xl p-1'>
+        </div>
+ <div className='sm:ml-auto '>
+    <div className='flex border border-2 w-fit border-gray-200 bg-gray-50 rounded-xl p-1'>
       <button onClick={()=>setSort('newest')}
        className={`px-3 py-1.5 rounded-lg text-sm ${sort==='newest'?'bg-white shadow':'text-gray-500'}`}>Newest</button>
         <button onClick={()=>setSort('oldest')}

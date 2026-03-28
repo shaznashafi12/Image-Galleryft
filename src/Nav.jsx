@@ -3,16 +3,20 @@ import { IoCameraOutline } from "react-icons/io5";
 import { FiMenu, FiUpload, FiX } from "react-icons/fi";
 import { MdDashboard ,MdOutlinePhotoLibrary } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const[open,setopen]=useState(false)
   const navigate=useNavigate();
   const handlLogout=()=>{
     localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
     setopen(false);
     navigate("/login");
   };
+  const location=useLocation()
+  const active=(path)=>location.pathname===path
     return (
     <div className='w-full fixed shadow-xl bg-[#f7f4f0] px-6 py-3 z-50'>
             <div className='flex items-center justify-between'>
@@ -23,9 +27,8 @@ const Nav = () => {
 <h1
   className='text-xl font-semibold tracking-wide'
   style={{
-    fontFamily:"'Playfair Display', Georgia, serif",
-    background:"linear-gradient(to right,#4a1f08,#c49a6c)",
-    WebkitBackgroundClip:"text",
+    fontFamily:"'Playfair Display', Georgia, serif", background:"linear-gradient(to right,#4a1f08,#c49a6c)",
+     WebkitBackgroundClip:"text",
  WebkitTextFillColor:"transparent",
     backgroundClip:"text",
   }}
@@ -35,19 +38,19 @@ const Nav = () => {
 </div>
       <div className='hidden md:flex items-center gap-6 text-black font-medium'>
     <Link to='/gallery'>
-     <button className='flex items-center gap-2 text-[#6F4E37] text-sm px-4 py-1.5 rounded-full '>
+     <button className={`flex items-center text-sm gap-2 ${active('/gallery')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
           <MdOutlinePhotoLibrary /> Gallery
         </button>
         </Link>
         <Link to='/upload'>
-<button className='flex items-center gap-2 text-sm hover:text-[#6F4E37]'>
+     <button className={`flex items-center text-sm gap-2 ${active('/upload')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
           <FiUpload />
           Upload
         </button>
         </Link>
       <Link to='/dashboard'>
 
-         <button className='flex items-center gap-2 text-sm hover:text-[#6F4E37]'>
+     <button className={`flex items-center text-sm gap-2 ${active('/dashboard')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
           <MdDashboard />
           Dashboard
         </button>
@@ -67,17 +70,22 @@ const Nav = () => {
     </div>
     {open && (
         <div className='md:hidden flex flex-col gap-4 mt-4 pb-4 border-t border-gray-200 pt-4 text-black font-medium '>
-  <button className='flex items-center gap-2 text-[#6F4E37] text-sm text-left'>
+     <Link to='/gallery'
+             onClick={()=>setopen(false)}>
+
+     <button className={`flex items-center text-sm gap-2 ${active('/gallery')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
   <MdOutlinePhotoLibrary className='text-base'/> Gallery
 </button>
+</Link>
+
         <Link to='/upload'
         onClick={()=>setopen(false)}>
-        <button className='flex items-center gap-2 text-sm hover:text-[#6F4E37]'>
+     <button className={`flex items-center text-sm gap-2 ${active('/upload')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
         <FiUpload/>Upload</button>
         </Link>
-        <Link to='/'
+        <Link to='/dashboard'
         onClick={()=>setopen(false)}>
-        <button className='flex items-center gap-2 text-sm hover:text-[#6F4E37]'>
+     <button className={`flex items-center text-sm gap-2 ${active('/dashboard')? 'text-[#6F4E37] font-semibold':'text-black hover:text-[#6F4E37]'}`} >
         <MdDashboard/>Dashboard</button>
         </Link>
         
