@@ -43,6 +43,7 @@ Backend API: https://image-gallerybk.onrender.com
 
 ## Folder Structure
 
+-frontend
 gallery/
 ├── public/
 ├── src/
@@ -67,3 +68,44 @@ gallery/
 ├── package.json
 ├── vite.config.js
 └── README.md
+   
+-backend
+├── config/
+│   ├── cloudinary.js
+│   └── multer.js
+├── controller/
+│   ├── Imagecontroller.js
+│   └── usercontroller.js
+├── middleware/
+│   └── auth.js
+├── models/
+│   ├── image.js
+│   └── user.js
+├── routes/
+│   ├── imagerouter.js
+│   └── userrouter.js
+├── utils/
+│   └── db.js
+├── .env
+├── index.js
+└── package.json
+
+## Setup Instructions
+
+* **Clone Frontend**
+git clone[https://github.com/shaznashafi12/Image-Galleryft]
+
+* **Clone Backend**
+git clone[https://github.com/shaznashafi12/Image-Gallerybk]
+
+* **Backend Configuration**
+  1. Navigate to the backend: cd backend
+  2. Install dependencies: npm install
+  3. Add `.env` file with PORT, MONGO_URI, JWT_SECRET, CLOUDINARY keys
+  4. Start the server: npm start
+
+* **Frontend Configuration**
+  1. Navigate to the frontend: cd gallery
+  2. Install dependencies: npm install
+  3. Add `.env` file with VITE_BACKEND_URL
+  4. Run the application: npm run dev
