@@ -16,6 +16,9 @@ const Nav = () => {
     navigate("/login");
   };
   const location=useLocation()
+  const user=JSON.parse(localStorage.getItem("user")||"{}");
+  const initial=user?.name?.charAt(0).toUpperCase()||"U";
+
   const active=(path)=>location.pathname===path
     return (
     <div className='w-full fixed shadow-xl bg-[#f7f4f0] px-6 py-3 z-50'>
@@ -55,6 +58,9 @@ const Nav = () => {
           Dashboard
         </button>
         </Link>
+        <div className='w-8 h-8 rounded-full bg-[#6F4E37] flex items-center justify-center text-white text-sm font-semibold'>
+          {initial}
+        </div>
      <div className='h-6 w-px bg-gray-300'></div>
  <button onClick={handlLogout}
  className='flex items-center gap-2 text-sm text-black hover:text-red-800'>
@@ -70,6 +76,12 @@ const Nav = () => {
     </div>
     {open && (
         <div className='md:hidden flex flex-col gap-4 mt-4 pb-4 border-t border-gray-200 pt-4 text-black font-medium '>
+     <div className='flex items-center gap-2 mb-1'>
+              <div className='w-8 h-8 rounded-full bg-[#6F4E37] flex items-center justify-center text-white text-sm font-semibold'>
+          {initial}
+        </div>
+<span className='text-sm font-medium text-gray-700 '>{user?.name}</span>
+    </div>
      <Link to='/gallery'
              onClick={()=>setopen(false)}>
 

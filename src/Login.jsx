@@ -14,17 +14,33 @@ const Login = () => {
     email:"",
     password:""
   });
-  const[error,setError]=useState("");
+  const[error,seterror]=useState("");
   const navigate=useNavigate();
 const [showPassword, setShowPassword] = useState(false);
   const handleChange=(e)=>{
     setForm({...form,[e.target.name]:e.target.value})
   };
+      const EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+      const validate=(form)=>{
+        const errr={}
+
+       if(!form.email.trim())errr.email="Email is required.";
+        else if(!EMAIL.test(form.email))errr.email="Enter a valid email address";
+        if(!form.password)errr.password="password is required.";
+        else if(form.password.length<8)errr.password="Password must be atleast 8 characters";
+       return errr;
+
+    }
   const handleSubmit=async(e)=>
   {
     e.preventDefault();
-
+ const errr=validate(form);
+   if(Object.keys(errr).length>0){
+    seterror(errr);
+    return;
+   }
+   seterror({});
     try{
       const res=await logg(form);
 
@@ -36,7 +52,7 @@ const [showPassword, setShowPassword] = useState(false);
     }, 1200);
   }
     catch(err){
-setError(err?.message||err?.response?.data?.message|| "Login failed");      toast.error("Invalid credentials")
+seterror(err?.message||err?.response?.data?.message|| "Login failed");      toast.error("Invalid credentials")
     }
   }
      const polaroids=[
@@ -104,6 +120,8 @@ setError(err?.message||err?.response?.data?.message|| "Login failed");      toas
   onChange={handleChange}
   placeholder='Enter your Email'
         className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>
+      {error.email&&<p className='text-red-500 text-xs mb-3 -mt-2'>{error.email}</p>}
+
                <div className="relative">
 
                 <label className='text-sm font-medium text-gray-700'>
@@ -121,6 +139,8 @@ setError(err?.message||err?.response?.data?.message|| "Login failed");      toas
   >
     {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
   </span>
+      {error.password&&<p className='text-red-500 text-xs mb-3 -mt-2'>{error.password}</p>}
+
   </div>
          <div className="text-right mb-2">
                 <Link to="" className="text-sm hover:underline">
@@ -139,9 +159,6 @@ className='w-full hover:bg-[#755137] py-3 rounded-lg font-medium transition bg-[
         </span>
         </Link>
     </p>
-    {error &&(
-  <p className="text-red-500 text-sm mt-2 text-center">{error}</p>
-)}
 </div>
 </form>
        </div>

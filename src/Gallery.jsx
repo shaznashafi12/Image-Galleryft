@@ -88,9 +88,9 @@ return(
 {selectedImage&&(
     <div className='fixed inset-0 bg-black/60 flex items-center justify-center z-50' onClick={()=>setSelectedImage(null)}>
     <div className='bg-white rounded-2xl 
-    max-w-3xl w-full overflow-hidden' 
+    max-w-3xl w-[92%] sm:w-full mx-auto overflow-hidden' 
     onClick={e=>e.stopPropagation()}>
-    <img src={selectedImage.imageUrl} className='w-full h-[350px] object-cover'/>
+    <img src={selectedImage.imageUrl} className='w-full h-[220px] sm:h-[350px] object-cover'/>
       <div className='p-6'>
         <h2 className='text-2xl font-bold'>
           {selectedImage.title}</h2>

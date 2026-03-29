@@ -17,20 +17,35 @@ const Signup=()=>{
   confirmPassword:""
 });
 
-const[showPassword,setShowPassword]=useState(false);
-const[showConfirmPassword,setShowConfirmPassword]=useState(false);
-const[error,setError]=useState("");
+const[showpassword,setpassword]=useState(false);
+const[showconfirm,setconfirm]=useState(false);
+const[errors,seterror]=useState("");
 const navigate = useNavigate();
 const handleChange=(e)=>{
     setForm({...form,[e.target.name]:e.target.value})
 };
-    
+    const EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const validate=(form)=>{
+        const errr={}
+        if(!form.name.trim())errr.name="Full name is required.";
+        else if(form.name.trim().length<2)errr.name="Name must be atleast 2 characters";
+       if(!form.email.trim())errr.email="Email is required.";
+        else if(!EMAIL.test(form.email))errr.email="Enter a valid email address";
+        if(!form.password)errr.password="password is required.";
+        else if(form.password.length<8)errr.password="Password must be atleast 8 characters";
+        if(!form.confirmPassword)errr.confirmPassword="Please confirm your password ";
+        else if(form.password!==form.confirmPassword)errr.confirmPassword="Passwords donot match";
+        return errr;
+
+    }
 const handleSubmit =async(e)=>{
     e.preventDefault();
-    if(form.password!==form.confirmPassword){
-        setError("Password do not match");
-        return;
-    }
+    const errr=validate(form);
+   if(Object.keys(errr).length>0){
+    seterror(errr);
+    return;
+   }
+   seterror({});
     try{
         const res=await regg({
             name:form.name,
@@ -38,16 +53,15 @@ const handleSubmit =async(e)=>{
             password:form.password
         });
 toast.success("User registered successfully");
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data));
 
 setTimeout(()=>{
   navigate("/login");
 }, 1500);  
   console.log(res.data);
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", JSON.stringify(res.data));
     }
     catch(err){
-        setError(err);
             toast.error("Registration failed ❌");
 
     }
@@ -113,44 +127,52 @@ Join Framely and start sharing your photos
                 <input type='text'  name='name' value={form.name}
               onChange={handleChange}
                 placeholder='Enter your Name'
-                className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>                <label className='text-sm font-medium text-gray-700'>
+                className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>     
+                {errors.name&&<p className='text-red-500 text-xs mb-3 -mt-2'>{errors.name}</p>}
+             <label className='text-sm font-medium text-gray-700'>
                     Email
                 </label>
         <input type='email' name='email' value={form.email}
             onChange={handleChange}
             placeholder='Enter your Email'
            className='w-full mt-2 bg-gray-100 mb-4 px-4 py-3 rounded-lg border border-2 border-gray-200 focus:outline-none  focus:ring-2 focus:ring-[#6F4E37]'/>              
+        {errors.email&&<p className='text-red-500 text-xs mb-3 -mt-2'>{errors.email}</p>}
+
                   <div className='relative'>
                 <label className='text-sm font-medium text-gray-700'>
                     Password
                     </label>
-         <input  type={showPassword?"text":"password"}
+         <input  type={showpassword?"text":"password"}
          name='password'
          value={form.password}
          onChange={handleChange}
                       placeholder="••••••••"
           className="w-full mt-2 bg-gray-100 mb-4 px-4 py-3 pr-10 rounded-lg border border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
-    />        <span onClick={()=>setShowPassword(!showPassword)}
-      className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500">                        {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+    />        <span onClick={()=>setpassword(!showpassword)}
+      className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500">                        {showpassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
 
                 </span>
+            {errors.password&&<p className='text-red-500 text-xs mb-3 -mt-2'>{errors.password}</p>}
+
                 </div>
      <div className='relative'>
   <label className="text-sm font-medium text-gray-700">
                     Confirm Password
                     </label>
-         <input type={showConfirmPassword?"text":"password"}
+         <input type={showconfirm?"text":"password"}
          name='confirmPassword'
          onChange={handleChange}
          value={form.confirmPassword}
                       placeholder="••••••••"
     className="w-full mt-2 bg-gray-100 mb-4 px-4 py-3 pr-10 rounded-lg border border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6F4E37]"
 />                
-<span onClick={()=>setShowConfirmPassword(!showConfirmPassword)}
+<span onClick={()=>setconfirm(!showconfirm)}
     className="absolute right-3 top-[60%] -translate-y-1/2 cursor-pointer text-gray-500"
->                        {showConfirmPassword ? <IoEyeOffOutline/>:<IoEyeOutline/>}
+>                        {showconfirm ? <IoEyeOffOutline/>:<IoEyeOutline/>}
 
                 </span>
+        {errors.confirmPassword&&<p className='text-red-500 text-xs mb-3 -mt-2'>{errors.confirmPassword}</p>}
+
                 </div>
 
         
