@@ -73,9 +73,7 @@ const polaroids=[
      {src:img3,rotate:"-rotate-2",label:"ocean calm"},
           ];
           return (
-            <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-        <div className='flex-col flex md:flex-row w-full min-h-screen'>
-                <div className='w-full h-[400px] md:w-1/2  md:h-screen bg-cover bg-center relative'
+<div className='flex flex-col md:flex-row w-full min-h-screen bg-gray-100 md:overflow-hidden'>                <div className='w-full h-[400px] md:w-1/2  md:h-screen bg-cover bg-center relative'
                 style={{backgroundImage:`url(${bg})`}}>
         
                     <div className='absolute inset-0 bg-black/50 h-full'>
@@ -104,8 +102,7 @@ const polaroids=[
           </p>
         </div></div></div>
         </div>
-        <div className='w-full md:w-1/2 flex items-center justify-center py-10 px-4'>
-            <div className='bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-left'>
+    <div className='w-full md:w-1/2 flex items-center justify-center py-10 px-4 bg-gray-100'>              <div className='bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-left'>
                   <div className='flex flex-col items-center gap-3 '>
           <div className='bg-[#6F4E37] p-3 rounded-xl shadow-md'>
             <IoCameraOutline className='text-white text-xl'/>
@@ -193,7 +190,6 @@ Join Framely and start sharing your photos
         </form>
                </div>
                 </div>
-            </div>
             </div>
         
   )

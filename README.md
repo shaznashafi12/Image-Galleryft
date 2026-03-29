@@ -1,16 +1,69 @@
-# React + Vite
+# Framely 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Framely is a full-stack photography sharing application built with the MERN stack. Users can sign up, log in, and upload photos with a title, category, and description. The gallery displays all community photos in a responsive grid with category filtering, date sorting, and a modal preview. Each user also has a personal dashboard to view and manage their own uploads.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Frontend: https://image-galleryft.vercel.app/  
+Backend API: https://image-gallerybk.onrender.com
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Frontend
+- React 19 — for building the user interface
+- React Router DOM — for client-side navigation and protected routes
+- Tailwind CSS — for styling and responsive design
+- Axios — for making API requests to the backend
+- React Hot Toast — for success and error notifications
+- React Icons — for icons throughout the app
+- Vite — as the build tool and development server
 
-## Expanding the ESLint configuration
+## Backend
+- Node.js — as the runtime environment
+- Express.js — for building the REST API
+- MongoDB — as the database
+- Mongoose — for schema modeling and database interaction
+- Multer — for handling image file uploads
+- Bcrypt — for securely hashing passwords
+- JWT — for user authentication and protected routes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+- User registration and login with JWT authentication
+- Password hashing with bcrypt for secure storage
+- Upload photos with title, category and description
+- Image uploads handled via Multer
+- Gallery page with responsive grid layout
+- Filter images by category and sort by newest or oldest
+- Click any image to open a full modal preview
+- Personal dashboard to view and delete own uploads
+- User avatar showing first letter of logged-in user's name
+- Form validation on both frontend and backend
+- Protected routes for authenticated users only
+- Fully responsive design for mobile and desktop
+
+## Folder Structure
+
+gallery/
+├── public/
+├── src/
+│   ├── api/
+│   │   └── api.js           # Axios API calls
+│   ├── assets/              # Static assets (hero.png, svgs)
+│   ├── images/              # Local image imports
+│   ├── App.jsx              # Routes setup
+│   ├── App.css
+│   ├── main.jsx
+│   ├── index.css
+│   ├── Nav.jsx              # Navbar with active links & logout
+│   ├── Signup.jsx           # Registration page
+│   ├── Login.jsx            # Login page
+│   ├── Gallery.jsx          # Browse all photos
+│   ├── Upload.jsx           # Upload new photo
+│   └── Dashboard.jsx        # User dashboard
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
