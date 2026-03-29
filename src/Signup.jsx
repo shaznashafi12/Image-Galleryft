@@ -102,7 +102,8 @@ const polaroids=[
           </p>
         </div></div></div>
         </div>
-    <div className='w-full md:w-1/2 flex items-center justify-center py-10 px-4 bg-gray-100'>              <div className='bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-left'>
+<div className='w-full md:w-1/2 flex items-center justify-center py-10 px-4 bg-gray-100 md:overflow-y-auto md:h-screen'>
+            <div className='bg-white p-6 md:p-8 rounded-2xl shadow-lg w-full max-w-md text-left'>
                   <div className='flex flex-col items-center gap-3 '>
           <div className='bg-[#6F4E37] p-3 rounded-xl shadow-md'>
             <IoCameraOutline className='text-white text-xl'/>

@@ -12,10 +12,3 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
   visibility: hidden;
   pointer-events: none;
 }
-@media(min-width:768px) 
-{
-  html,body{
-    overflow: hidden;
-    height: 100%;
-  }
-}
